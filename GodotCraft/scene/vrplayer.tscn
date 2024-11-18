@@ -1,0 +1,89 @@
+[gd_scene load_steps=15 format=3 uid="uid://dh4moyqsnw0mo"]
+
+[ext_resource type="PackedScene" uid="uid://nqiyqnx42m61" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_fullglove_physics_hand.tscn" id="2_5nolr"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_ymqj7"]
+[ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="3_m8owc"]
+[ext_resource type="PackedScene" uid="uid://cn086fe0sxevh" path="res://scene/function_create_block.tscn" id="3_qaruv"]
+[ext_resource type="PackedScene" uid="uid://cigx2gnf4tg4d" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_fullglove_physics_hand.tscn" id="4_2hiwk"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_btuap"]
+[ext_resource type="PackedScene" uid="uid://cqrmanjg2np6i" path="res://scene/assist_point.tscn" id="4_ubna2"]
+[ext_resource type="PackedScene" uid="uid://dmcn3ifauf11j" path="res://scene/function_break_block.tscn" id="5_oklm2"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_s2k2r"]
+[ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="7_dk50x"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/overrides/ground_physics_settings.gd" id="10_wyj1u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ummsd"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yuaji"]
+material = SubResource("StandardMaterial3D_ummsd")
+
+[sub_resource type="Resource" id="Resource_um75q"]
+script = ExtResource("10_wyj1u")
+flags = 16
+move_drag = 5.0
+move_traction = 30.0
+stop_on_slope = true
+move_max_slope = 45.0
+jump_max_slope = 45.0
+jump_velocity = 5.0
+bounciness = 0.0
+bounce_threshold = 1.0
+
+[node name="VRplayer" type="Node3D"]
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="LeftHand" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="LeftPhysicsHand" parent="XROrigin3D/LeftHand" instance=ExtResource("2_5nolr")]
+
+[node name="MovementDirect" parent="XROrigin3D/LeftHand" instance=ExtResource("2_ymqj7")]
+
+[node name="FunctionTeleport" parent="XROrigin3D/LeftHand" instance=ExtResource("3_m8owc")]
+teleport_button_action = "ax_button"
+
+[node name="RayCast_L" type="RayCast3D" parent="XROrigin3D/LeftHand"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -5, 0)
+
+[node name="Laser_L" type="MeshInstance3D" parent="XROrigin3D/LeftHand"]
+transform = Transform3D(0.15, 0, 0, 0, -6.55671e-09, -0.15, 0, 0.15, -6.55671e-09, 0, 2.35169e-08, -5)
+mesh = SubResource("BoxMesh_yuaji")
+
+[node name="FunctionCreateBlock" parent="XROrigin3D/LeftHand" instance=ExtResource("3_qaruv")]
+
+[node name="AssistPoint_L" parent="XROrigin3D/LeftHand" instance=ExtResource("4_ubna2")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -5)
+visible = false
+
+[node name="RightHand" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="RightPhysicsHand" parent="XROrigin3D/RightHand" instance=ExtResource("4_2hiwk")]
+
+[node name="MovementTurn" parent="XROrigin3D/RightHand" instance=ExtResource("4_btuap")]
+
+[node name="MovementJump" parent="XROrigin3D/RightHand" instance=ExtResource("7_dk50x")]
+
+[node name="RayCast_R" type="RayCast3D" parent="XROrigin3D/RightHand"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -5, 0)
+
+[node name="Laser_R" type="MeshInstance3D" parent="XROrigin3D/RightHand"]
+transform = Transform3D(0.15, 0, 0, 0, -6.55671e-09, -0.15, 0, 0.15, -6.55671e-09, 0, 2.35169e-08, -5)
+mesh = SubResource("BoxMesh_yuaji")
+skeleton = NodePath("../../LeftHand")
+
+[node name="FunctionBreakBlock" parent="XROrigin3D/RightHand" instance=ExtResource("5_oklm2")]
+
+[node name="AssistPoint_R" parent="XROrigin3D/RightHand" instance=ExtResource("4_ubna2")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -5)
+visible = false
+
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("5_s2k2r")]
+physics = SubResource("Resource_um75q")
+ground_control = 2

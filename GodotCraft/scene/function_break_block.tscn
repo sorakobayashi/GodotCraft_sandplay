@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmcn3ifauf11j"]
+
+[ext_resource type="Script" path="res://scene/FunctionBreakBlock.gd" id="1_qvmd3"]
+
+[node name="FunctionBreakBlock" type="Node3D"]
+script = ExtResource("1_qvmd3")
+action_button_action = "trigger_click"

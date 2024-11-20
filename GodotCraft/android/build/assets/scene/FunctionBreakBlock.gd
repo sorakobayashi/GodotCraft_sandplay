@@ -60,12 +60,15 @@ func break_block():
 															right_ray_cast.get_collision_normal()*0.25 + Vector3(0, -1, 0))
 
 func highlight_block():
-	if right_ray_cast.is_colliding():
-		var collided_node = right_ray_cast.get_collision_point()
-		# Hilightノードを衝突ノードの位置に移動して表示
-		assist_point.global_transform.origin = collided_node
-		assist_point.visible = true
+	if right_ray_cast != null and assist_point != null:
+		if right_ray_cast.is_colliding():
+			var collided_node = right_ray_cast.get_collision_point()
+			assist_point.global_transform.origin = collided_node
+			assist_point.visible = true
+		else:
+			assist_point.visible = false
 	else:
-		# RayCastが何もヒットしていない場合、Hilightノードを非表示にする
-		assist_point.visible = false
-		pass
+		if right_ray_cast == null:
+			pass
+		if assist_point == null:
+			pass

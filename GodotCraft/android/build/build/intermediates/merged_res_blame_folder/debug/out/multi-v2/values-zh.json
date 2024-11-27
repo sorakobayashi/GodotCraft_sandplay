@@ -4,20 +4,20 @@
             "outputFile": "com.godot.game-mergeDebugResources-16:/values-zh/values-zh.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\2123160\\Desktop\\Mincraft_GodotEdition\\GodotCraft\\android\\build\\res\\values-zh\\godot_project_name_string.xml",
+                    "source": "C:\\Users\\2123160\\Desktop\\GodotCraft_sandplay-main\\GodotCraft\\android\\build\\res\\values-zh\\godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",
                         "startOffsets": "112",
-                        "endColumns": "61",
-                        "endOffsets": "172"
+                        "endColumns": "64",
+                        "endOffsets": "175"
                     },
                     "to": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
-                        "endColumns": "64",
-                        "endOffsets": "115"
+                        "endColumns": "67",
+                        "endOffsets": "118"
                     }
                 }
             ]

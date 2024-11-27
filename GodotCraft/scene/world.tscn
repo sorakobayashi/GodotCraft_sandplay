@@ -71,3 +71,4 @@ screen_size = Vector2(2560, 1563)
 scene = ExtResource("6_afej4")
 viewport_size = Vector2(1280, 767)
 unshaded = true
+scene_properties_keys = PackedStringArray("Generation.gd")

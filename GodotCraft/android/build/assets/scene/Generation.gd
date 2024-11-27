@@ -1,21 +1,22 @@
-extends Control
+extends CanvasLayer
 
-@onready var majo_button = $ColorRect/VBoxContainer/MajoGeneration
-@onready var world_node = get_node("res://scene/world.tscn") # Worldノードへのパスを指定
+@onready var world_node = get_node("/root/World")
+@onready var glb_name = world_node.get_glb_files()
+
+@onready var vrplayer = get_node("/root/World/VRplayer/XROrigin3D/LeftHand/Laser_L")
 
 func _ready():
-	# ボタンのpressedシグナルを関数に接続する
-	majo_button.pressed.connect(_on_majo_button_pressed)
+	$Generation/ColorRect/VBoxContainer/Button0.text = glb_name[0]
+	$Generation/ColorRect/VBoxContainer/Button1.text = glb_name[1]
 
-func _on_majo_button_pressed():
-	# redball.tscnをインスタンス化して(0, 20, 0)の位置に配置
-	var redball_scene = preload("res://scene/redball.tscn")
-	var redball_instance = redball_scene.instance()
-	redball_instance.global_transform.origin = Vector3(0, 20, 0)
-	
-	# Worldノードに追加
-	world_node.add_child(redball_instance)
+func _on_button0_pressed():
+	var new_instance = world_node.instance_scene(0)  # 新しいインスタンスを作成
+	if new_instance:
+		new_instance.global_transform.origin = vrplayer.global_transform.origin
+		world_node.add_child(new_instance)
 
-# 毎フレーム呼び出される関数。'delta'は前のフレームからの経過時間
-func _process(delta):
-	pass
+func _on_button1_pressed():
+	var new_instance = world_node.instance_scene(1)  # 新しいインスタンスを作成
+	if new_instance:
+		new_instance.global_transform.origin = vrplayer.global_transform.origin
+		world_node.add_child(new_instance)

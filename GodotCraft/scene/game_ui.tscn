@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://btw1i7r7aj8yj"]
 
-[ext_resource type="Script" path="res://scene/Generation.gd" id="1_4dmxj"]
+[ext_resource type="Script" path="res://scene/Generation.gd" id="1_mgtfm"]
 
 [node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_mgtfm")
 
 [node name="Generation" type="Control" parent="."]
 layout_mode = 3
@@ -12,7 +13,6 @@ offset_right = -1276.42
 offset_bottom = -771.12
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4dmxj")
 
 [node name="ColorRect" type="ColorRect" parent="Generation"]
 layout_mode = 1
@@ -38,9 +38,25 @@ grow_vertical = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="MajoGeneration" type="Button" parent="Generation/ColorRect/VBoxContainer"]
+[node name="Button0" type="Button" parent="Generation/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 106
 text = "Majo Generation"
 
-[connection signal="pressed" from="Generation/ColorRect/VBoxContainer/MajoGeneration" to="Generation" method="_on_majo_button_pressed"]
+[node name="Button1" type="Button" parent="Generation/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 106
+text = "Majo Generation"
+
+[node name="Button2" type="Button" parent="Generation/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 106
+text = "Majo Generation"
+
+[node name="Button3" type="Button" parent="Generation/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 106
+text = "Majo Generation"
+
+[connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button0" to="." method="_on_button0_pressed"]
+[connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button1" to="." method="_on_button1_pressed"]

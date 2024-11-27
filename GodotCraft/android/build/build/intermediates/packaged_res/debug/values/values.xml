@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="godot_project_name_string">GodotCraft</string>
+    <string name="godot_project_name_string">GodotCraft_v2</string>
     <style name="GodotAppMainTheme" parent="@android:style/Theme.Black.NoTitleBar"/>
     <style name="GodotAppSplashTheme" parent="@android:style/Theme.Black.NoTitleBar.Fullscreen">
 		<item name="android:windowBackground">@drawable/splash_drawable</item>

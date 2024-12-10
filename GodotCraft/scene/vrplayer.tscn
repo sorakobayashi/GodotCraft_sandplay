@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dh4moyqsnw0mo"]
+[gd_scene load_steps=17 format=3 uid="uid://dh4moyqsnw0mo"]
 
 [ext_resource type="PackedScene" uid="uid://nqiyqnx42m61" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_fullglove_physics_hand.tscn" id="2_5nolr"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_ymqj7"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="6_ilsie"]
 [ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="7_dk50x"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/overrides/ground_physics_settings.gd" id="10_wyj1u"]
+[ext_resource type="PackedScene" uid="uid://cbnu8q76wb2so" path="res://scene/miniature_box.tscn" id="13_dw5ov"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ummsd"]
 albedo_color = Color(1, 0, 0, 1)
@@ -92,3 +93,7 @@ visible = false
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("5_s2k2r")]
 physics = SubResource("Resource_um75q")
 ground_control = 2
+
+[node name="MiniatureBox" parent="XROrigin3D" instance=ExtResource("13_dw5ov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.18, -5)
+viewport_size = Vector2(1125, 750)

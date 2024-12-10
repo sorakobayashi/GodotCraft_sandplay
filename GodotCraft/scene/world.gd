@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var VRplayer = $VRplayer  # VRプレイヤーのノード
+@onready var UI_BOX = $Viewport2Din3D  #Viewport2Din3Dのノード
 
 var xr_interface: XRInterface
 var base_url = "http://10.96.13.139:8000/" # ベースURL
@@ -30,7 +31,8 @@ func _ready():
 	var error = http_request.request_raw(base_url)
 	if error != OK:
 		push_error("An error occurred in the HTTP request for file list.")
-		
+
+	
 # ファイルリストのHTTPリクエストが完了したときのコールバック関数
 func _on_file_list_received(result, response_code, headers, body):
 	if result == HTTPRequest.RESULT_SUCCESS:

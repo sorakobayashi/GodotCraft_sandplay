@@ -41,22 +41,24 @@ alignment = 1
 [node name="Button0" type="Button" parent="Generation/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 106
-text = "Majo Generation"
+text = "No title"
 
 [node name="Button1" type="Button" parent="Generation/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 106
-text = "Majo Generation"
+text = "No title"
 
 [node name="Button2" type="Button" parent="Generation/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 106
-text = "Majo Generation"
+text = "Notitle"
 
 [node name="Button3" type="Button" parent="Generation/ColorRect/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 106
-text = "Majo Generation"
+text = "Notitle"
 
 [connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button0" to="." method="_on_button0_pressed"]
 [connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button1" to="." method="_on_button1_pressed"]
+[connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button2" to="." method="_on_button2_pressed"]
+[connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button3" to="." method="_on_button3_pressed"]

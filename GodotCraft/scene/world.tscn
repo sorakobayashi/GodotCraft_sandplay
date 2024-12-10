@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dm2xg0nmwv2cd"]
+[gd_scene load_steps=9 format=3 uid="uid://dm2xg0nmwv2cd"]
 
 [ext_resource type="Script" path="res://scene/world.gd" id="1_e6doi"]
 [ext_resource type="PackedScene" uid="uid://dh4moyqsnw0mo" path="res://scene/vrplayer.tscn" id="3_8pbwi"]
 [ext_resource type="MeshLibrary" uid="uid://ctrf0kp0omsr5" path="res://resources/sand_test.tres" id="3_ur3m0"]
 [ext_resource type="Script" path="res://script/GridMap.gd" id="4_jd8jq"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="5_wnlts"]
-[ext_resource type="PackedScene" uid="uid://btw1i7r7aj8yj" path="res://scene/game_ui.tscn" id="6_afej4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_opn0y"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -68,7 +67,8 @@ metadata/_editor_floor_ = Vector3(1, 0, 0)
 [node name="Viewport2Din3D" parent="." instance=ExtResource("5_wnlts")]
 transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 22.446, 10.7836, -8.60494)
 screen_size = Vector2(2560, 1563)
-scene = ExtResource("6_afej4")
 viewport_size = Vector2(1280, 767)
 unshaded = true
-scene_properties_keys = PackedStringArray("Generation.gd")
+
+[node name="OverheadView" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.64679, 0.762668, 0, -0.762668, 0.64679, 0, 32.0743, 28.8576)

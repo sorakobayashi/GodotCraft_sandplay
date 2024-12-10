@@ -3,25 +3,39 @@
 class_name XRToolsFunctionCreateBlock
 extends Node3D
 
+# 砂生成のためのボタン
 @export var action_button_action : String = "trigger_click"
+
+# ミニチュアboxを開くためのボタン
+@export var action_button_miniature : String = "by_button"
+
+# vrplayerのノード
+@onready var vrplayer = $"../../.."
+
+# uiのノード
+@onready var ui_box = $"../../MiniatureBox"
 
 @onready var _controller := XRHelpers.get_xr_controller(self)
 @onready var left_ray_cast = $"../RayCast_L"
 @onready var assist_point = $"../AssistPoint_L"
 @onready var laser = $"../Laser_L"
 
-var is_button_pressed = false
+var is_trigger_pressed = false
+var is_by_pressed = false
 var falling_blocks = []
 var fall_timer = 0.0
 var fall_interval = 0.5
 
+# 初期状態でUIを非表示にしておく
 func _ready():
 	left_ray_cast.enabled = true
 	_controller.connect("button_pressed", _on_button_pressed)
 	_controller.connect("button_released", _on_button_released)
+	
+	ui_box.visible = false
 
 func _process(delta):
-	if is_button_pressed:
+	if is_trigger_pressed:
 		create_block()
 	highlight_block()
 	fall_timer += delta
@@ -29,16 +43,26 @@ func _process(delta):
 		fall_timer = 0.0
 		update_falling_blocks()
 
-func get_controller() -> XRController3D:
-	return _controller
-
+# ボタンが押された時にUIの表示/非表示を切り替える
 func _on_button_pressed(p_button) -> void:
 	if p_button == action_button_action:
-		is_button_pressed = true
+		is_trigger_pressed = true
+	
+	if p_button == action_button_miniature:
+		# UIの表示/非表示を切り替える
+		ui_box.visible = not ui_box.visible
+		is_by_pressed = true
+		if ui_box.visible == true:
+			ui_box.global_transform.origin = ui_box.global_transform.origin + Vector3(0,-10,0)
+		else:
+			ui_box.global_transform.origin = ui_box.global_transform.origin + Vector3(0,10,0)
 	
 func _on_button_released(_p_button) -> void:
 	if _p_button == action_button_action:
-		is_button_pressed = false
+		is_trigger_pressed = false
+	
+	if _p_button == action_button_miniature:
+		is_by_pressed = false
 
 func create_block():
 	if left_ray_cast.is_colliding():

@@ -22,6 +22,7 @@ extends Node3D
 
 var is_trigger_pressed = false
 var is_by_pressed = false
+var is_ax_pressed = false
 var falling_blocks = []
 var fall_timer = 0.0
 var fall_interval = 0.5

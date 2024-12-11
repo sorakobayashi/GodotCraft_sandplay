@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://nqiyqnx42m61" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_fullglove_physics_hand.tscn" id="2_5nolr"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_ymqj7"]
-[ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="3_m8owc"]
 [ext_resource type="PackedScene" uid="uid://cn086fe0sxevh" path="res://scene/function_create_block.tscn" id="3_qaruv"]
 [ext_resource type="PackedScene" uid="uid://cigx2gnf4tg4d" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_fullglove_physics_hand.tscn" id="4_2hiwk"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_btuap"]
@@ -13,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="7_dk50x"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/overrides/ground_physics_settings.gd" id="10_wyj1u"]
 [ext_resource type="PackedScene" uid="uid://cbnu8q76wb2so" path="res://scene/miniature_box.tscn" id="13_dw5ov"]
+[ext_resource type="PackedScene" uid="uid://kyhaogt0a4q8" path="res://addons/godot-xr-tools/functions/movement_flight.tscn" id="13_g7skc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ummsd"]
 albedo_color = Color(1, 0, 0, 1)
@@ -37,6 +37,7 @@ bounce_threshold = 1.0
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+current = true
 
 [node name="LeftHand" type="XRController3D" parent="XROrigin3D"]
 tracker = &"left_hand"
@@ -44,9 +45,6 @@ tracker = &"left_hand"
 [node name="LeftPhysicsHand" parent="XROrigin3D/LeftHand" instance=ExtResource("2_5nolr")]
 
 [node name="MovementDirect" parent="XROrigin3D/LeftHand" instance=ExtResource("2_ymqj7")]
-
-[node name="FunctionTeleport" parent="XROrigin3D/LeftHand" instance=ExtResource("3_m8owc")]
-teleport_button_action = "ax_button"
 
 [node name="RayCast_L" type="RayCast3D" parent="XROrigin3D/LeftHand"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -96,4 +94,8 @@ ground_control = 2
 
 [node name="MiniatureBox" parent="XROrigin3D" instance=ExtResource("13_dw5ov")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.18, -5)
+visible = false
 viewport_size = Vector2(1125, 750)
+
+[node name="MovementFlight" parent="XROrigin3D" instance=ExtResource("13_g7skc")]
+flight_button = "ax_button"

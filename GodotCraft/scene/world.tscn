@@ -54,7 +54,7 @@ use_collision = true
 size = Vector3(5, 10, 50)
 
 [node name="VRplayer" parent="." instance=ExtResource("3_8pbwi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.501, 13.4015, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 
 [node name="GridMap" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.987703, 0)
@@ -69,6 +69,3 @@ transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 22.446, 10.7836, 
 screen_size = Vector2(2560, 1563)
 viewport_size = Vector2(1280, 767)
 unshaded = true
-
-[node name="OverheadView" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.64679, 0.762668, 0, -0.762668, 0.64679, 0, 32.0743, 28.8576)

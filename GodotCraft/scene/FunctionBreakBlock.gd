@@ -6,7 +6,6 @@ extends Node3D
 ## Action controller button
 @export var action_button_action : String = "trigger_click"
 
-
 ## Controller
 @onready var _controller := XRHelpers.get_xr_controller(self)
 

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://7m18yljjlsqw"]
+
+[ext_resource type="Script" path="res://scene/hilight.gd" id="1_v4lig"]
+
+[node name="FunctionHighLight" type="Node3D"]
+script = ExtResource("1_v4lig")

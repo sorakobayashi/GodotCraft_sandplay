@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://btw1i7r7aj8yj"]
+
+[ext_resource type="Script" path="res://scene/Generation.gd" id="1_mgtfm"]
+
+[node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_mgtfm")
+
+[node name="Generation" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 1.108
+anchor_bottom = 1.19
+offset_right = -1276.42
+offset_bottom = -771.12
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Generation"]
+layout_mode = 1
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1277.0
+offset_bottom = 770.0
+color = Color(0, 1, 1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Generation/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.214
+anchor_top = 0.252
+anchor_right = 0.728
+anchor_bottom = 0.75
+offset_left = -0.0640259
+offset_top = 0.216003
+offset_right = 0.0719604
+offset_bottom = 0.249939
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Button0" type="Button" parent="Generation/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 106
+text = "No title"
+
+[node name="Button1" type="Button" parent="Generation/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 106
+text = "No title"
+
+[node name="Button2" type="Button" parent="Generation/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 106
+text = "Notitle"
+
+[node name="Button3" type="Button" parent="Generation/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 106
+text = "Notitle"
+
+[connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button0" to="." method="_on_button0_pressed"]
+[connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button1" to="." method="_on_button1_pressed"]
+[connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button2" to="." method="_on_button2_pressed"]
+[connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button3" to="." method="_on_button3_pressed"]

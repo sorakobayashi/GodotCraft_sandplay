@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://dm2xg0nmwv2cd"]
+
+[ext_resource type="Script" path="res://scene/world.gd" id="1_e6doi"]
+[ext_resource type="PackedScene" uid="uid://dh4moyqsnw0mo" path="res://scene/vrplayer.tscn" id="3_8pbwi"]
+[ext_resource type="MeshLibrary" uid="uid://ctrf0kp0omsr5" path="res://resources/sand_test.tres" id="3_ur3m0"]
+[ext_resource type="Script" path="res://script/GridMap.gd" id="4_jd8jq"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="5_wnlts"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_opn0y"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_mxtdt"]
+sky_material = SubResource("ProceduralSkyMaterial_opn0y")
+
+[sub_resource type="Environment" id="Environment_hu7wb"]
+background_mode = 2
+sky = SubResource("Sky_mxtdt")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x548n"]
+albedo_color = Color(0, 1, 1, 1)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_e6doi")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hu7wb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_x548n")
+use_collision = true
+size = Vector3(50, 1, 50)
+
+[node name="wall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 2.23947, 0)
+material_override = SubResource("StandardMaterial3D_x548n")
+use_collision = true
+size = Vector3(5, 5.47894, 50)
+
+[node name="wall2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 2.2395, 0)
+material_override = SubResource("StandardMaterial3D_x548n")
+use_collision = true
+size = Vector3(5, 5.479, 50)
+
+[node name="wall3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.13043, 22.5)
+material_override = SubResource("StandardMaterial3D_x548n")
+use_collision = true
+size = Vector3(5, 5.26086, 50)
+
+[node name="wall4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.2395, -22.5)
+material_override = SubResource("StandardMaterial3D_x548n")
+use_collision = true
+size = Vector3(5, 5.479, 50)
+
+[node name="VRplayer" parent="." instance=ExtResource("3_8pbwi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.987703, 0)
+mesh_library = ExtResource("3_ur3m0")
+cell_size = Vector3(0.5, 0.5, 0.5)
+cell_scale = 0.5
+script = ExtResource("4_jd8jq")
+metadata/_editor_floor_ = Vector3(1, 0, 0)
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("5_wnlts")]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 22.446, 10.7836, -8.60494)
+visible = false
+screen_size = Vector2(2560, 1563)
+viewport_size = Vector2(1280, 767)
+unshaded = true

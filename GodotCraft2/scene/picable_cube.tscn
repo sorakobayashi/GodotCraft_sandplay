@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://dd6xuf0lgtjnj"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_qaq4d"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.gd" id="2_ushu5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1xiqc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pli0v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2ktw"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f88i8"]
+material = SubResource("StandardMaterial3D_c2ktw")
+flip_faces = true
+size = Vector3(1.1, 1.1, 1.1)
+
+[node name="picableCube" type="Node3D"]
+
+[node name="PickableObject" parent="." instance=ExtResource("1_qaq4d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.191073, 0, -0.0186481)
+gravity_scale = -3.876
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="PickableObject"]
+shape = SubResource("BoxShape3D_1xiqc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PickableObject/CollisionShape3D2"]
+mesh = SubResource("BoxMesh_pli0v")
+
+[node name="XRToolsHighlightRing" type="MeshInstance3D" parent="PickableObject"]
+script = ExtResource("2_ushu5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PickableObject/XRToolsHighlightRing"]
+mesh = SubResource("BoxMesh_f88i8")

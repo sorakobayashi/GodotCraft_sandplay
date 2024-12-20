@@ -25,14 +25,14 @@ color = Color(0, 1, 1, 1)
 [node name="VBoxContainer" type="VBoxContainer" parent="Generation/ColorRect"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.214
-anchor_top = 0.252
-anchor_right = 0.728
+anchor_left = 0.276
+anchor_top = 0.25
+anchor_right = 0.79
 anchor_bottom = 0.75
-offset_left = -0.0640259
-offset_top = 0.216003
-offset_right = 0.0719604
-offset_bottom = 0.249939
+offset_left = -0.175995
+offset_top = -161.75
+offset_right = 15.96
+offset_bottom = 166.75
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 32
@@ -40,25 +40,35 @@ alignment = 1
 
 [node name="Button0" type="Button" parent="Generation/ColorRect/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 106
+theme_override_font_sizes/font_size = 61
 text = "No title"
 
 [node name="Button1" type="Button" parent="Generation/ColorRect/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 106
+theme_override_font_sizes/font_size = 61
 text = "No title"
 
 [node name="Button2" type="Button" parent="Generation/ColorRect/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 106
-text = "Notitle"
+theme_override_font_sizes/font_size = 61
+text = "No title"
 
 [node name="Button3" type="Button" parent="Generation/ColorRect/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 106
-text = "Notitle"
+theme_override_font_sizes/font_size = 61
+text = "No title"
+
+[node name="Reload" type="Button" parent="Generation"]
+layout_mode = 0
+offset_left = 11.002
+offset_top = 166.0
+offset_right = 236.002
+offset_bottom = 345.0
+theme_override_font_sizes/font_size = 66
+text = "Reload"
 
 [connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button0" to="." method="_on_button0_pressed"]
 [connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button1" to="." method="_on_button1_pressed"]
 [connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button2" to="." method="_on_button2_pressed"]
 [connection signal="pressed" from="Generation/ColorRect/VBoxContainer/Button3" to="." method="_on_button3_pressed"]
+[connection signal="pressed" from="Generation/Reload" to="." method="Reload"]

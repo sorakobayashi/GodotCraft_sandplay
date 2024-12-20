@@ -32,7 +32,6 @@ func _ready():
 	if error != OK:
 		push_error("An error occurred in the HTTP request for file list.")
 
-	
 # ファイルリストのHTTPリクエストが完了したときのコールバック関数
 func _on_file_list_received(result, response_code, headers, body):
 	if result == HTTPRequest.RESULT_SUCCESS:
@@ -112,3 +111,17 @@ func instance_scene(index: int) -> Node:
 	if index >= 0 and index < scenes.size():
 		return scenes[index].duplicate()  # シーンを複製して新しいインスタンスを作成
 	return null
+
+# GLBファイルリストを再取得する関数
+func reload_glb_files():
+	glb_files.clear()
+	current_index = 0
+	scenes.clear()
+	
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.request_completed.connect(self._on_file_list_received)
+	
+	var error = http_request.request_raw(base_url)
+	if error != OK:
+		push_error("An error occurred in the HTTP request for reloading the file list.")

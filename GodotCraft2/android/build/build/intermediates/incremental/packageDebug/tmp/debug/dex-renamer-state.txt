@@ -1,4 +1,4 @@
-#Fri Dec 13 15:50:38 JST 2024
+#Wed Dec 18 15:33:43 JST 2024
 base.2=C\:\\Users\\2123160\\Desktop\\GodotCraft_sandplay-main2\\GodotCraft2\\android\\build\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
 path.2=6/classes.dex
 base.1=C\:\\Users\\2123160\\Desktop\\GodotCraft_sandplay-main2\\GodotCraft2\\android\\build\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex

@@ -36,31 +36,31 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 material_override = SubResource("StandardMaterial3D_x548n")
 use_collision = true
-size = Vector3(50, 1, 50)
+size = Vector3(82, 1, 62)
 
 [node name="wall" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 2.23947, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.5245, 4.68582, 0)
 material_override = SubResource("StandardMaterial3D_x548n")
 use_collision = true
-size = Vector3(5, 5.47894, 50)
+size = Vector3(5, 7, 62)
 
 [node name="wall2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 2.2395, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.3503, 4.68585, 0)
 material_override = SubResource("StandardMaterial3D_x548n")
 use_collision = true
-size = Vector3(5, 5.479, 50)
+size = Vector3(5, 7, 62)
 
 [node name="wall3" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.13043, 22.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.57678, 28.5963)
 material_override = SubResource("StandardMaterial3D_x548n")
 use_collision = true
-size = Vector3(5, 5.26086, 50)
+size = Vector3(5, 7, 82)
 
 [node name="wall4" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.2395, -22.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4.68585, -28.4221)
 material_override = SubResource("StandardMaterial3D_x548n")
 use_collision = true
-size = Vector3(5, 5.479, 50)
+size = Vector3(5, 7, 82)
 
 [node name="VRplayer" parent="." instance=ExtResource("3_8pbwi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
@@ -71,7 +71,7 @@ mesh_library = ExtResource("3_ur3m0")
 cell_size = Vector3(0.5, 0.5, 0.5)
 cell_scale = 0.5
 script = ExtResource("4_jd8jq")
-metadata/_editor_floor_ = Vector3(1, 0, 0)
+metadata/_editor_floor_ = Vector3(1, -8, 0)
 
 [node name="Viewport2Din3D" parent="." instance=ExtResource("5_wnlts")]
 transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 22.446, 10.7836, -8.60494)

@@ -1,16 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://dh4moyqsnw0mo"]
+[gd_scene load_steps=20 format=3 uid="uid://dh4moyqsnw0mo"]
 
 [ext_resource type="PackedScene" uid="uid://nqiyqnx42m61" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_fullglove_physics_hand.tscn" id="2_5nolr"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_ymqj7"]
 [ext_resource type="PackedScene" uid="uid://cn086fe0sxevh" path="res://scene/function_create_block.tscn" id="3_qaruv"]
 [ext_resource type="PackedScene" uid="uid://cigx2gnf4tg4d" path="res://addons/godot-xr-tools/hands/scenes/highpoly/right_fullglove_physics_hand.tscn" id="4_2hiwk"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_btuap"]
+[ext_resource type="AudioStream" uid="uid://5qsjdr42sjob" path="res://sound/walk_new.wav" id="4_j7xuw"]
 [ext_resource type="PackedScene" uid="uid://cqrmanjg2np6i" path="res://scene/assist_point.tscn" id="4_ubna2"]
+[ext_resource type="AudioStream" uid="uid://dqmc34fkonte" path="res://sound/sand_create.wav" id="5_0vr31"]
 [ext_resource type="PackedScene" uid="uid://dmcn3ifauf11j" path="res://scene/function_break_block.tscn" id="5_oklm2"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_s2k2r"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="6_ilsie"]
 [ext_resource type="PackedScene" uid="uid://c2q5phg8w08o" path="res://addons/godot-xr-tools/functions/movement_jump.tscn" id="7_dk50x"]
 [ext_resource type="Script" path="res://addons/godot-xr-tools/overrides/ground_physics_settings.gd" id="10_wyj1u"]
+[ext_resource type="AudioStream" uid="uid://7ye7stpk28oq" path="res://sound/sand_break_2.wav" id="12_ndfit"]
 [ext_resource type="PackedScene" uid="uid://cbnu8q76wb2so" path="res://scene/miniature_box.tscn" id="13_dw5ov"]
 [ext_resource type="PackedScene" uid="uid://kyhaogt0a4q8" path="res://addons/godot-xr-tools/functions/movement_flight.tscn" id="13_g7skc"]
 
@@ -50,6 +53,9 @@ tracker = &"left_hand"
 
 [node name="MovementDirect" parent="XROrigin3D/LeftHand" instance=ExtResource("2_ymqj7")]
 
+[node name="Audio_Walk" type="AudioStreamPlayer" parent="XROrigin3D/LeftHand/MovementDirect"]
+stream = ExtResource("4_j7xuw")
+
 [node name="RayCast_L" type="RayCast3D" parent="XROrigin3D/LeftHand"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -5, 0)
@@ -59,6 +65,9 @@ transform = Transform3D(0.15, 0, 0, 0, -6.55671e-09, -0.15, 0, 0.15, -6.55671e-0
 mesh = SubResource("BoxMesh_yuaji")
 
 [node name="FunctionCreateBlock" parent="XROrigin3D/LeftHand" instance=ExtResource("3_qaruv")]
+
+[node name="Audio_Sand_Create" type="AudioStreamPlayer" parent="XROrigin3D/LeftHand/FunctionCreateBlock"]
+stream = ExtResource("5_0vr31")
 
 [node name="AssistPoint_L" parent="XROrigin3D/LeftHand" instance=ExtResource("4_ubna2")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -5)
@@ -85,6 +94,9 @@ mesh = SubResource("BoxMesh_yuaji")
 skeleton = NodePath("../../LeftHand")
 
 [node name="FunctionBreakBlock" parent="XROrigin3D/RightHand" instance=ExtResource("5_oklm2")]
+
+[node name="Audio_Sand_Break" type="AudioStreamPlayer" parent="XROrigin3D/RightHand/FunctionBreakBlock"]
+stream = ExtResource("12_ndfit")
 
 [node name="AssistPoint_R" parent="XROrigin3D/RightHand" instance=ExtResource("4_ubna2")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, -5)

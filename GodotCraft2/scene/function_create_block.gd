@@ -20,6 +20,8 @@ extends Node3D
 @onready var assist_point = $"../AssistPoint_L"
 @onready var laser = $"../Laser_L"
 
+@onready var sand_create_player: AudioStreamPlayer = $Audio_Sand_Create
+
 var is_trigger_pressed = false
 var is_by_pressed = false
 var is_ax_pressed = false
@@ -70,12 +72,14 @@ func create_block():
 		if left_ray_cast.get_collider().has_method("place_block"):
 			left_ray_cast.get_collider().place_block(left_ray_cast.get_collision_point() + 
 													 left_ray_cast.get_collision_normal() * 0.25 + Vector3(0, -1, 0), 0)
+		sand_create_player.play()
 	else:
 		var grid_map = get_node("/root/World/GridMap")
 		if grid_map.has_method("place_block"):
 			var block_position = laser.global_transform.origin
 			grid_map.place_block(block_position, 0)
 			start_block_fall(grid_map, block_position)
+			sand_create_player.play()
 			
 func highlight_block():
 	if left_ray_cast != null and assist_point != null:
@@ -99,14 +103,45 @@ func start_block_fall(grid_map, initial_position):
 	falling_blocks.append(block)
 
 func update_falling_blocks():
+	var blocks_to_remove = []  # 削除予定のブロックリスト
+	
 	for block in falling_blocks:
 		var grid_map = block["node"]
 		var current_position = block["position"]
 		var new_position = current_position + Vector3(0, -1, 0)
+		
+		# ワールド座標からグリッド座標に変換（誤差防止）
+		var cell_coord_new = grid_map.local_to_map(new_position)
+		var cell_coord_current = grid_map.local_to_map(current_position)
+		
+		# 落下停止の条件: 地面に衝突 or Y座標が0以下
+		if grid_map.get_cell_item(cell_coord_new) != -1 or new_position.y <= 0:
+			# 地面に到達または最下層に到達したので削除リストに追加
+			blocks_to_remove.append(block)
+			continue
+			
+		# ブロックを新しい位置に移動
+		grid_map.set_cell_item(cell_coord_new, 0)  # 新しい位置にブロック配置
+		grid_map.set_cell_item(cell_coord_current, -1)  # 元の位置をクリア
+		
+		# 位置更新（整数座標に補正）
+		block["position"] = grid_map.map_to_local(cell_coord_new)
+		
+		# ループ終了後に削除リストからブロックを消去
+	for block in blocks_to_remove:
+		falling_blocks.erase(block)
 
-		if new_position.y <= 5:
-			block["position"].y = 5
-		else:
-			grid_map.set_cell_item(grid_map.local_to_map(current_position), -1)
-			grid_map.set_cell_item(grid_map.local_to_map(new_position), 0)
-			block["position"] = new_position
+
+
+#func update_falling_blocks():
+#	for block in falling_blocks:
+#		var grid_map = block["node"]
+#		var current_position = block["position"]
+#		var new_position = current_position + Vector3(0, -1, 0)
+#
+#		if new_position.y <= 0:
+#			block["position"].y = 0
+#		else:
+#			grid_map.set_cell_item(grid_map.local_to_map(current_position), -1)
+#			grid_map.set_cell_item(grid_map.local_to_map(new_position), 0)
+#			block["position"] = new_position

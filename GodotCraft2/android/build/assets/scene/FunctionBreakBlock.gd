@@ -15,6 +15,8 @@ extends Node3D
 # hilightノードを取得
 @onready var assist_point = $"../AssistPoint_R"
 
+@onready var sand_break_player: AudioStreamPlayer = $Audio_Sand_Break
+
 # ボタンが押されているかどうかのフラグ
 var is_button_pressed = false
 
@@ -58,6 +60,7 @@ func break_block():
 			# right_ray_cast.get_collider().destroy_block(pos-right_ray_cast.get_collision_normal())
 			right_ray_cast.get_collider().destroy_block(right_ray_cast.get_collision_point() - 
 															right_ray_cast.get_collision_normal()*0.25 + Vector3(0, -1, 0))
+			sand_break_player.play()
 
 func highlight_block():
 	if right_ray_cast != null and assist_point != null:
